@@ -41,7 +41,7 @@ def plot_nan_values(df) -> None:
     plt.rcdefaults()
     plt.figure(figsize=(10,5))
 
-    ax = sns.barplot(x="cols", y="percentage_of_missing_values", data=nans_df)
+    ax = sns.barplot(x="cols", y="percentage_of_missing_values", data=nans_df, color = 'blue')
     ax.set_ylim(0, 100)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 
