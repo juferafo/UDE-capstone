@@ -52,7 +52,7 @@ def clean_immigration_dataset(df):
     """
     This method is designed to clean the inmigration dataset passed as PySpark dataframe
 
-    :param df: Monthly immigration data
+    :param df: I94 immigration dataset
     :type pyspark.sql.DataFrame:
 
     :return pyspark.sql.DataFrame:
