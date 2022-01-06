@@ -10,15 +10,38 @@ from pyspark.sql.types import *
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.plotly as py
-import plotly.graph_objs as go
-import requests
-requests.packages.urllib3.disable_warnings()
+#import plotly.plotly as py
+#import plotly.graph_objs as go
+#import requests
+#requests.packages.urllib3.disable_warnings()
 
 # System dependencies and others
-import os
-import configparser
-import datetime as dt
+#import os
+#import configparser
+#import datetime as dt
+
+
+def print_nan_values(df):
+    """
+    This method is designed to print the number of missing values per column found in a 
+    PySpark dataframe
+
+    :param df: PySpark dataframe
+    :type pyspark.sql.DataFrame:
+
+    :return pandas.DataFrame:
+    """
+
+    df_nulls = df.toPandas().isnull().sum()
+
+    df_nulls = pd.DataFrame(data = df_nulls, columns=['null_values'])
+    df_nulls = df_nulls.reset_index()
+    df_nulls.columns = ['columns', 'null_values']
+
+    df_nulls[df_nulls['null_values'] > 0]
+
+    return df_nulls
+
 
 
 def plot_nan_values(df) -> None:
