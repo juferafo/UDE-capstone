@@ -10,15 +10,7 @@ from pyspark.sql.types import *
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-#import plotly.plotly as py
-#import plotly.graph_objs as go
-#import requests
-#requests.packages.urllib3.disable_warnings()
 
-# System dependencies and others
-#import os
-#import configparser
-#import datetime as dt
 
 
 def print_nan_values(df):
@@ -32,15 +24,15 @@ def print_nan_values(df):
     :return pandas.DataFrame:
     """
 
-    df_nulls = df.toPandas().isnull().sum()
+    df_nan = df.toPandas().isnull().sum()
 
-    df_nulls = pd.DataFrame(data = df_nulls, columns=['null_values'])
-    df_nulls = df_nulls.reset_index()
-    df_nulls.columns = ['columns', 'null_values']
+    df_nan = pd.DataFrame(data = df_nan, columns=['null_values'])
+    df_nan = df_nan.reset_index()
+    df_nan.columns = ['columns', 'null_values']
 
-    df_nulls[df_nulls['null_values'] > 0]
+    df_nan[df_nan['null_values'] > 0]
 
-    return df_nulls
+    return df_nan
 
 
 
