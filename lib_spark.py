@@ -95,6 +95,8 @@ def clean_immigration_dataset(df):
     nan_columns = ['occup', 'entdepu','insnum']
     df = df.drop(*nan_columns)
     
+    df = df.dropDuplicates(['cicid'])
+    
     print(f'Number of records after cleaning: {df.count()}')
     
     return df
@@ -112,8 +114,11 @@ def clean_temperature_dataset(df):
 
     print(f'Number of records present in the raw temperature dataset: {df.count()}')
     
-    df = df.dropna(subset=['AverageTemperature'])
-    df = df.drop_duplicates(subset=['dt', 'City', 'Country'])
+    nan_columns = ['AverageTemperature', 'AverageTemperatureUncertainty']    
+    df = df.dropna(subset=nan_columns)
+    
+    duplicate_columns = ['dt', 'City', 'Country']
+    df = df.drop_duplicates(subset=duplicate_columns)
 
     print(f'Number of records after cleaning: {df.count()}')
     
