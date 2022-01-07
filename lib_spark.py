@@ -2,8 +2,8 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import avg
 from pyspark.sql import SQLContext
-from pyspark.sql.functions import isnan, when, count, col, udf, dayofmonth, dayofweek, month, year, weekofyear
-from pyspark.sql.functions import monotonically_increasing_id
+from pyspark.sql.functions import count, col, udf, monotonically_increasing_id
+from pyspark.sql.functions import dayofmonth, dayofweek, month, year, weekofyear
 from pyspark.sql.types import *
 
 # Pandas and data-plotting dependencies
@@ -78,7 +78,7 @@ def plot_nan_values(df) -> None:
 
 def clean_immigration_dataset(df):
     """
-    This method is designed to clean the inmigration dataset passed as PySpark dataframe
+    This method is designed to clean the immigration dataset passed as PySpark dataframe
 
     :param df: I94 immigration dataset
     :type pyspark.sql.DataFrame:
@@ -86,7 +86,7 @@ def clean_immigration_dataset(df):
     :return pyspark.sql.DataFrame:
     """
 
-    print(f'Number of records present in the raw inmigration dataset: {df.count()}')
+    print(f'Number of records present in the raw immigration dataset: {df.count()}')
     
     # Dropping rows where all elements are NaN
     df = df.dropna(how='all')
