@@ -13,6 +13,19 @@ import matplotlib.pyplot as plt
 
 import os
 
+def create_spark_session():
+    """
+    This method creates and returns the SparkSession
+    """
+        
+    spark = SparkSession \
+        .builder \
+        .config("spark.jars.packages", "saurfang:spark-sas7bdat:2.0.0-s_2.11") \
+        .enableHiveSupport() \
+        .getOrCreate()
+    
+    return spark
+
 def print_nan_values(df):
     """
     This method is designed to print the number of missing values per column found in a 
